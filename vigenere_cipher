@@ -1,0 +1,38 @@
+alphabet= ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*(),.;:?'
+vigenere_cipher = []
+for i in range(len(alphabet)):
+    vigenere_cipher.append([])
+    for k in range(len(alphabet)):
+	    vigenere_cipher[i].append(alphabet[(i + k) % len(alphabet)])
+	    
+class encryption:
+    def __init__(self, key, message):
+        self.key = key
+        self.message = message
+
+    def encrypt(self):
+        self.new_message = ''
+        for i in range(len(self.message)):
+           letter = self.key[i % len(self.key)]
+           for a in range(len(alphabet)):
+               if letter == alphabet[a]:
+                   distance = a
+           for k in range(len(alphabet)):
+               row = vigenere_cipher[k]
+               if row[0] == self.message[i]:
+                   self.new_message = self.new_message + row[distance]
+        print(self.new_message)
+
+    def decrypt(self, key):
+        self.messg_decpt = ''
+        for i in range(len(self.new_message)):
+            letter = key[i % len(key)]
+            for a in range(len(alphabet)):
+                if letter == alphabet[a]:
+                    distance = a
+            for k in range(len(alphabet)):
+                row = vigenere_cipher[k]
+                if row[distance] == self.new_message[i]:
+                    self.messg_decpt = self.messg_decpt + row[0]
+            
+        print(self.messg_decpt)
